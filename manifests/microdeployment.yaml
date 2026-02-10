@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: pruebakube.azurecr.io/api
+        ports:
+        - containerPort: 8000
+        env: 
+        - name: url
+          value: jdbc:mysql://servermerchi.mysql.database.azure.com:3306/social_db?useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        - name: user
+          value: adminaz
+        - name: pass
+          value: Vedruna2025
+
